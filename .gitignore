@@ -1,4 +1,8 @@
 .venv
-/configs/.env
+/config/.env
 .ruff_cache
 __pycache__
+.env
+logs/*
+
+data/temp_data.parquet

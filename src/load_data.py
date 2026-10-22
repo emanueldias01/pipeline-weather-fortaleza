@@ -13,7 +13,7 @@ logging.basicConfig(
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / "configs" / ".env")
+load_dotenv(BASE_DIR / "config" / ".env")
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
