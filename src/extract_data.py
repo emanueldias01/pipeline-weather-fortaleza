@@ -8,7 +8,7 @@ import logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +22,7 @@ URL = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&units=metric&la
 
 
 def extract_data(url: str) -> list:
-    
+
     logging.info("Search data")
 
     request = requests.get(url)
@@ -30,9 +30,7 @@ def extract_data(url: str) -> list:
     data = request.json()
 
     if request.status_code != 200:
-        logging.error(
-            f"Error in request. Code: {request.status_code}\nBody: {data}"
-        )
+        logging.error(f"Error in request. Code: {request.status_code}\nBody: {data}")
         return []
 
     if not data:
@@ -43,10 +41,11 @@ def extract_data(url: str) -> list:
 
     file_path.parent.mkdir(parents=True, exist_ok=True)
 
-    with open(file_path, 'w') as f:
+    with open(file_path, "w") as f:
         json.dump(data, f)
         logging.info(f"Data saved successfully in {file_path}")
 
     return data
+
 
 extract_data(URL)
