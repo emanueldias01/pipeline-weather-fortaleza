@@ -80,7 +80,7 @@ def normalizer_weather_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 def drop_columns(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     logging.info(f"Remove columns call: {columns}")
-    df = df.drop(columns)
+    df = df.drop(columns, axis=1)
     logging.info("Columns removed")
     return df
 
@@ -102,12 +102,12 @@ def normalize_date_time_columns(df: pd.DataFrame, columns: list[str]) -> pd.Data
     return df
 
 
-def data_transformations():
-    logging.info("\n Init transformer")
+def data_transformations() -> pd.DataFrame:
+    logging.info("\nInit transformer")
     df = create_dataframe(PATH_DIR)
     df = normalizer_weather_columns(df)
     df = drop_columns(df, columns_names_to_drop)
     df = rename_columns(df, columns_names_to_rename)
-    df = normalizer_weather_columns(df, columns_to_normalize_datetime)
+    df = normalize_date_time_columns(df, columns_to_normalize_datetime)
     logging.info("Transformation done\n")
     return df

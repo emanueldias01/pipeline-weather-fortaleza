@@ -13,13 +13,6 @@ logging.basicConfig(
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / "configs" / ".env")
-
-API_KEY = os.getenv("API_KEY")
-
-CITY = "Fortaleza,BR"
-URL = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&units=metric&lang=pt_br&appid={API_KEY}"
-
 
 def extract_data(url: str) -> list:
 
@@ -46,6 +39,3 @@ def extract_data(url: str) -> list:
         logging.info(f"Data saved successfully in {file_path}")
 
     return data
-
-
-extract_data(URL)
